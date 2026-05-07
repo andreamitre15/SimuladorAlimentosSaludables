@@ -91,6 +91,26 @@ form {
   font-size: 26px; /* tamaño base en escritorio */
 }
 
-/* Ajustes para pantallas pequeñas */
+/* Estilo normal en escritorio */
+#snack,
+#btnAgregar,
+label[for="snack"] {
+  font-size: 16px;
+}
 
+/* En móviles */
+@media (max-width: 600px) {
+  label[for="snack"] {
+    font-size: 22px;   /* agranda el texto del label */
+  }
 
+  #snack {
+    font-size: 20px;   /* agranda el texto dentro del select */
+    padding: 10px;     /* más cómodo para tocar */
+  }
+
+  #btnAgregar {
+    font-size: 20px;   /* agranda el botón */
+    padding: 10px 16px;
+  }
+}
