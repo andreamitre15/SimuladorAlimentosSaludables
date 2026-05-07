@@ -1,7 +1,7 @@
 [
   { "nombre": "Fruta fresca", "imagen": "./img/frutafresca.jfif", "energia": 10, "concentracion": 8, "bienestar": 12, "recomendacion": "" },
   { "nombre": "Yogur natural", "imagen": "./img/yogurt.jfif", "energia": 8, "concentracion": 10, "bienestar": 10, "recomendacion": "" },
-  { "nombre": "Mix de frutos secos","imagen":"./img/frutosecos.jfif", "energia": 12, "concentracion": 12, "bienestar": 8, "recomendacion": "" },
+  { "nombre": "Mix de frutos secos","imagen":"./img/frutos.jfif", "energia": 12, "concentracion": 12, "bienestar": 8, "recomendacion": "" },
   { "nombre": "Barra de cereales", "imagen":"./img/barracereal.jfif", "energia": 7, "concentracion": 6, "bienestar": 7, "recomendacion": "" },
   { "nombre": "Infusión sin azúcar", "imagen":"./img/agua.jfif", "energia": 5, "concentracion": 8, "bienestar": 6, "recomendacion": "" },
   { "nombre": "Hamburguesa", "imagen":"./img/hamburguesa.jfif", "energia": 15, "concentracion": -5, "bienestar": -8, "recomendacion": "Compensa con frutas en la merienda" },

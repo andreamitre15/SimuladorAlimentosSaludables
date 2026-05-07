@@ -86,31 +86,37 @@ footer {
   margin-top: 100px;
   color: #777;
 }
-/* Estilo general del formulario */
-form {
-  font-size: 26px; /* tamaño base en escritorio */
+
+#snack {
+  font-size: 18px;   /* texto legible dentro del select */
+  padding: 8px;
 }
 
-/* Estilo normal en escritorio */
-#snack,
-#btnAgregar,
-label[for="snack"] {
-  font-size: 16px;
+#snack option {
+  font-size: 18px;   /* asegura que las opciones también se vean grandes */
 }
 
-/* En móviles */
 @media (max-width: 600px) {
   label[for="snack"] {
-    font-size: 70px;   /* agranda el texto del label */
+    font-size: 28px;   /* el título se ve grande */
+    display: block;    /* ocupa toda la línea */
+    margin-bottom: 12px;
   }
 
   #snack {
-    font-size: px;   /* agranda el texto dentro del select */
-    padding: 10px;     /* más cómodo para tocar */
+    font-size: 28px;   /* texto más cómodo */
+    padding: 10px;
+    width: 100%;       /* ocupa todo el ancho en móvil */
+    margin-bottom: 12px;
   }
 
   #btnAgregar {
-    font-size: px;   /* agranda el botón */
+    font-size: 28px;
     padding: 10px 16px;
+    width: 100%;       /* botón ancho en móvil */
+  }
+
+  .formSection {
+    padding: 12px;
   }
 }
