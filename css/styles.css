@@ -95,16 +95,16 @@ form {
 
 @media (max-width: 600px) {
   form {
-    font-size: 20px;   /* agranda el texto en móviles */
+    font-size: 25px;   /* agranda el texto en móviles */
     padding: 12px;     /* más espacio interno */
   }
 
   input, select, button {
-    font-size: 18px;   /* agranda controles */
+    font-size: 20px;   /* agranda controles */
     padding: 10px;     /* más cómodos para tocar */
   }
 
   label {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
