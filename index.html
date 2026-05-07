@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  
+  <script src="./js/main.js" defer></script>
+  <title>Mini Juego - Alimentación Saludable</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <h1>Mini Juego: Alimentación Saludable en el Trabajo</h1>
+
+  <section id="formSection">
+    <label for="snack">Elige tu comida/snack:</label>
+    <select id="snack"></select>
+    <button id="btnAgregar">Agregar</button>
+  </section>
+
+  <section>
+    <h2>Comidas elegidas</h2>
+    <ul id="listaSnacks"></ul>
+  </section>
+
+  <section>
+    <h2>Impacto en tu jornada</h2>
+    <div class="barra">
+      <span>⚡ Energía</span>
+      <div class="progress"><div id="barraEnergia" class="fill"></div></div>
+    </div>
+    <div class="barra">
+      <span>🧠 Concentración</span>
+      <div class="progress"><div id="barraConcentracion" class="fill"></div></div>
+    </div>
+    <div class="barra">
+      <span>😊 Bienestar</span>
+      <div class="progress"><div id="barraBienestar" class="fill"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Recomendaciones</h2>
+    <div id="comentarios"></div>
+  </section>
+ <footer>
+    <p>Desarrollado por Médicas - Equipo de Salud - Simulador de Alimentación Saludable</p>
+  </footer>
+</body>
+</html>
+
+
