@@ -101,16 +101,16 @@ label[for="snack"] {
 /* En móviles */
 @media (max-width: 600px) {
   label[for="snack"] {
-    font-size: 30px;   /* agranda el texto del label */
+    font-size: 50px;   /* agranda el texto del label */
   }
 
   #snack {
-    font-size: px;   /* agranda el texto dentro del select */
+    font-size: 40px;   /* agranda el texto dentro del select */
     padding: 10px;     /* más cómodo para tocar */
   }
 
   #btnAgregar {
-    font-size: 25px;   /* agranda el botón */
+    font-size: 40px;   /* agranda el botón */
     padding: 10px 16px;
   }
 }
