@@ -3,7 +3,6 @@ let energia = 50;
 let concentracion = 50;
 let bienestar = 50;
 
-// Cargar snacks desde JSON
 async function cargarSnacks() {
   const response = await fetch("snacks.json");
   snacks = await response.json();
@@ -24,8 +23,8 @@ function mostrarOpciones() {
 
 function colorSegunValor(valor) {
   if (valor >= 70) return "green";
-  if (valor >= 50 && valor <= 69) return "yellow";
-  if (valor <= 49) return "red";
+  if (valor >= 50 && valor <= 60) return "yellow";
+  if (valor <= 40) return "red";
   return "yellow"; // todo lo demás también amarillo
 }
 
@@ -60,11 +59,7 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
     concentracion = Math.max(0, Math.min(100, concentracion));
     bienestar = Math.max(0, Math.min(100, bienestar));
 
-    // Crear un contenedor para snack + recomendación
-    const contenedor = document.createElement("div");
-    contenedor.className = "snackContenedor";
-
-    // Snack en lista
+    // Crear item en lista
     const li = document.createElement("li");
     const img = document.createElement("img");
     img.src = elegido.imagen;
@@ -77,12 +72,14 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
     btnEliminar.className = "eliminar";
     btnEliminar.style.marginLeft = "10px";
 
-    // Recomendación asociada
+    // Crear recomendación en comentarios y guardarla en el li
     let pRec = null;
     if (elegido.recomendacion && elegido.recomendacion.trim() !== "") {
+      const comentarios = document.getElementById("comentarios");
       pRec = document.createElement("p");
       pRec.textContent = elegido.recomendacion;
-      contenedor.appendChild(pRec);
+      comentarios.appendChild(pRec);
+      li.recomendacionElemento = pRec; // 👈 guardamos referencia
     }
 
     btnEliminar.addEventListener("click", () => {
@@ -95,12 +92,16 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
       bienestar = Math.max(0, Math.min(100, bienestar));
 
       actualizarBarras();
-      contenedor.remove(); // 👈 elimina snack + recomendación juntos
+      li.remove();
+
+      // Eliminar recomendación asociada
+      if (li.recomendacionElemento) {
+        li.recomendacionElemento.remove();
+      }
     });
 
     li.appendChild(btnEliminar);
-    contenedor.appendChild(li);
-    document.getElementById("listaSnacks").appendChild(contenedor);
+    document.getElementById("listaSnacks").appendChild(li);
 
     actualizarBarras();
   }
