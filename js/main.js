@@ -24,8 +24,8 @@ function mostrarOpciones() {
 
 function colorSegunValor(valor) {
   if (valor >= 70) return "green";
-  if (valor >= 50 && valor <= 60) return "yellow";
-  if (valor <= 40) return "red";
+  if (valor >= 50 && valor <= 69) return "yellow";
+  if (valor <= 49) return "red";
   return "yellow"; // todo lo demás también amarillo
 }
 
