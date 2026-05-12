@@ -11,7 +11,6 @@ async function cargarSnacks() {
   actualizarBarras();
 }
 
-// Mostrar opciones en el select
 function mostrarOpciones() {
   const select = document.getElementById("snack");
   select.innerHTML = "";
@@ -23,15 +22,13 @@ function mostrarOpciones() {
   });
 }
 
-// Función auxiliar para elegir color según porcentaje
 function colorSegunValor(valor) {
-  if (valor >= 70) return "green";       // ✅ verde
-  if (valor >= 50 && valor <= 60) return "yellow"; // ⚠️ amarillo
-  if (valor <= 40) return "red";         // ❌ rojo
-  return "orange";                       // intermedio
+  if (valor >= 70) return "green";
+  if (valor >= 50 && valor <= 60) return "yellow";
+  if (valor <= 40) return "red";
+  return "yellow"; // todo lo demás también amarillo
 }
 
-// Actualizar barras y mostrar porcentaje afuera
 function actualizarBarras() {
   const barraEnergia = document.getElementById("barraEnergia");
   const barraConcentracion = document.getElementById("barraConcentracion");
@@ -50,23 +47,24 @@ function actualizarBarras() {
   document.getElementById("valorBienestar").textContent = bienestar + "%";
 }
 
-// Evento para agregar snack
 document.getElementById("btnAgregar").addEventListener("click", () => {
   const select = document.getElementById("snack");
   const elegido = snacks.find(s => s.nombre === select.value);
 
   if (elegido) {
-    // Actualizar valores
     energia += elegido.energia;
     concentracion += elegido.concentracion;
     bienestar += elegido.bienestar;
 
-    // Limitar entre 0 y 100
     energia = Math.max(0, Math.min(100, energia));
     concentracion = Math.max(0, Math.min(100, concentracion));
     bienestar = Math.max(0, Math.min(100, bienestar));
 
-    // Mostrar snack en lista con botón eliminar
+    // Crear un contenedor para snack + recomendación
+    const contenedor = document.createElement("div");
+    contenedor.className = "snackContenedor";
+
+    // Snack en lista
     const li = document.createElement("li");
     const img = document.createElement("img");
     img.src = elegido.imagen;
@@ -76,10 +74,18 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
 
     const btnEliminar = document.createElement("button");
     btnEliminar.textContent = "Eliminar";
-    btnEliminar.className = "eliminar"; // estilo rojo
+    btnEliminar.className = "eliminar";
     btnEliminar.style.marginLeft = "10px";
+
+    // Recomendación asociada
+    let pRec = null;
+    if (elegido.recomendacion && elegido.recomendacion.trim() !== "") {
+      pRec = document.createElement("p");
+      pRec.textContent = elegido.recomendacion;
+      contenedor.appendChild(pRec);
+    }
+
     btnEliminar.addEventListener("click", () => {
-      // Revertir valores al eliminar
       energia -= elegido.energia;
       concentracion -= elegido.concentracion;
       bienestar -= elegido.bienestar;
@@ -89,24 +95,15 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
       bienestar = Math.max(0, Math.min(100, bienestar));
 
       actualizarBarras();
-      li.remove();
+      contenedor.remove(); // 👈 elimina snack + recomendación juntos
     });
 
     li.appendChild(btnEliminar);
-    document.getElementById("listaSnacks").appendChild(li);
+    contenedor.appendChild(li);
+    document.getElementById("listaSnacks").appendChild(contenedor);
 
-    // Actualizar barras
     actualizarBarras();
-
-    // Mostrar recomendación si existe
-    if (elegido.recomendacion && elegido.recomendacion.trim() !== "") {
-      const comentarios = document.getElementById("comentarios");
-      const pRec = document.createElement("p");
-      pRec.textContent = elegido.recomendacion;
-      comentarios.appendChild(pRec);
-    }
   }
 });
 
-// Inicializar
 cargarSnacks();
