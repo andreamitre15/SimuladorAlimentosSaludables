@@ -26,9 +26,9 @@ function mostrarOpciones() {
 // Función auxiliar para elegir color según porcentaje
 function colorSegunValor(valor) {
   if (valor >= 70) return "green";       // ✅ verde
-  if (valor >= 50 && valor <= 60) return "yellow"; // ⚠️ amarillo
-  if (valor <= 40) return "red";         // ❌ rojo
-  return "orange";                       // intermedio
+  if (valor >= 50 && valor <= 69) return "yellow"; // ⚠️ amarillo
+  if (valor <= 49) return "red";         // ❌ rojo
+  return "yellow";                       // intermedio
 }
 
 // Actualizar barras y mostrar porcentaje afuera
@@ -98,14 +98,9 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
     // Actualizar barras
     actualizarBarras();
 
-    // Mostrar mensaje de elección
-    const comentarios = document.getElementById("comentarios");
-    const pElegido = document.createElement("p");
-    pElegido.textContent = "Elegiste: " + elegido.nombre;
-    comentarios.appendChild(pElegido);
-
     // Mostrar recomendación si existe
     if (elegido.recomendacion && elegido.recomendacion.trim() !== "") {
+      const comentarios = document.getElementById("comentarios");
       const pRec = document.createElement("p");
       pRec.textContent = elegido.recomendacion;
       comentarios.appendChild(pRec);
