@@ -91,6 +91,18 @@ button.eliminar {
   padding: 6px 12px;
   cursor: pointer;
 }
+/* Estilo para las recomendaciones */
+#comentarios p {
+  background-color: #f0f9f0;   /* verde muy claro */
+  border: 1px solid #c8e6c9;   /* borde verde suave */
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 8px 0;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #2e7d32;              /* texto verde oscuro */
+}
+
 
 /* Versión teléfono: agrandar formulario y botón */
 @media (max-width: 600px) {
@@ -116,12 +128,14 @@ button.eliminar {
   .formSection {
     padding: 16px;
   }
-}
-
-
-
-.fill {
+  
+  .fill {
   height: 100%;
   transition: width 0.5s ease, background-color 0.5s ease;
 }
+}
+
+
+
+
 
