@@ -8,6 +8,7 @@ async function cargarSnacks() {
   const response = await fetch("snacks.json");
   snacks = await response.json();
   mostrarOpciones();
+  actualizarBarras();
 }
 
 // Mostrar opciones en el select
@@ -22,78 +23,78 @@ function mostrarOpciones() {
   });
 }
 
-// Función para asignar color dinámico según valor
-function colorBarra(valor) {
-  if (valor >= 70) return "green";
-  if (valor >= 40) return "orange";
-  return "red";
-}
-
-// Actualizar barras de progreso
-function actualizarImpacto() {
+// Actualizar barras y mostrar porcentaje afuera
+function actualizarBarras() {
   const barraEnergia = document.getElementById("barraEnergia");
   const barraConcentracion = document.getElementById("barraConcentracion");
   const barraBienestar = document.getElementById("barraBienestar");
 
   barraEnergia.style.width = energia + "%";
-  barraEnergia.style.backgroundColor = colorBarra(energia);
+  document.getElementById("valorEnergia").textContent = energia + "%";
 
   barraConcentracion.style.width = concentracion + "%";
-  barraConcentracion.style.backgroundColor = colorBarra(concentracion);
+  document.getElementById("valorConcentracion").textContent = concentracion + "%";
 
   barraBienestar.style.width = bienestar + "%";
-  barraBienestar.style.backgroundColor = colorBarra(bienestar);
+  document.getElementById("valorBienestar").textContent = bienestar + "%";
 }
 
-// Manejo del botón
+// Evento para agregar snack
 document.getElementById("btnAgregar").addEventListener("click", () => {
-  const snackElegido = document.getElementById("snack").value;
-  const snackObj = snacks.find(s => s.nombre === snackElegido);
+  const select = document.getElementById("snack");
+  const elegido = snacks.find(s => s.nombre === select.value);
 
-  // Crear elemento en la lista con imagen
-  const li = document.createElement("li");
-  li.innerHTML = `<img src="${snackObj.imagen}" alt="${snackObj.nombre}" class="imgSnack"> ${snackElegido}`;
+  if (elegido) {
+    // Actualizar valores
+    energia += elegido.energia;
+    concentracion += elegido.concentracion;
+    bienestar += elegido.bienestar;
 
-  // Botón eliminar
-  const btnEliminar = document.createElement("button");
-  btnEliminar.textContent = "Eliminar";
-  btnEliminar.style.marginLeft = "10px";
-  btnEliminar.onclick = () => {
-    li.remove();
-    Swal.fire({
-      title: "Snack eliminado",
-      text: `${snackElegido} fue quitado de tu lista.`,
-      icon: "info",
-      confirmButtonText: "OK"
-    });
-  };
+    // Limitar entre 0 y 100
+    energia = Math.max(0, Math.min(100, energia));
+    concentracion = Math.max(0, Math.min(100, concentracion));
+    bienestar = Math.max(0, Math.min(100, bienestar));
 
-  li.appendChild(btnEliminar);
-  document.getElementById("listaSnacks").appendChild(li);
+    // Mostrar snack en lista
+    const li = document.createElement("li");
+    const img = document.createElement("img");
+    img.src = elegido.imagen;
+    img.className = "imgSnack";
+    li.appendChild(img);
+    li.appendChild(document.createTextNode(elegido.nombre));
+    document.getElementById("listaSnacks").appendChild(li);
 
-  // Impacto en indicadores (con límites 0–100)
-  energia = Math.min(Math.max(energia + snackObj.energia, 0), 100);
-  concentracion = Math.min(Math.max(concentracion + snackObj.concentracion, 0), 100);
-  bienestar = Math.min(Math.max(bienestar + snackObj.bienestar, 0), 100);
-  actualizarImpacto();
+    // Actualizar barras
+    actualizarBarras();
 
-  // Comentarios automáticos
-  const comentariosDiv = document.getElementById("comentarios");
-  const comentario = document.createElement("p");
-  comentario.textContent = snackObj.recomendacion
-    ? `Has elegido ${snackElegido}. Recomendación: ${snackObj.recomendacion}`
-    : `Has elegido ${snackElegido}. ¡Buena elección!`;
-  comentariosDiv.appendChild(comentario);
-
-  // SweetAlert
-  Swal.fire({
-    title: "Comida agregada",
-    text: comentario.textContent,
-    icon: snackObj.recomendacion ? "warning" : "success",
-    confirmButtonText: "OK"
-  });
+    // Mostrar recomendación si existe
+    if (elegido.recomendacion) {
+      const comentarios = document.getElementById("comentarios");
+      const p = document.createElement("p");
+      p.textContent = elegido.recomendacion;
+      comentarios.appendChild(p);
+    }
+  }
 });
+
+function actualizarBarras() {
+  const barraEnergia = document.getElementById("barraEnergia");
+  const barraConcentracion = document.getElementById("barraConcentracion");
+  const barraBienestar = document.getElementById("barraBienestar");
+
+  barraEnergia.style.width = energia + "%";
+  barraEnergia.style.backgroundColor = "#ff9800"; // naranja
+  document.getElementById("valorEnergia").textContent = energia + "%";
+
+  barraConcentracion.style.width = concentracion + "%";
+  barraConcentracion.style.backgroundColor = "#2196f3"; // azul
+  document.getElementById("valorConcentracion").textContent = concentracion + "%";
+
+  barraBienestar.style.width = bienestar + "%";
+  barraBienestar.style.backgroundColor = "#4caf50"; // verde
+  document.getElementById("valorBienestar").textContent = bienestar + "%";
+}
+
 
 // Inicializar
 cargarSnacks();
-actualizarImpacto();

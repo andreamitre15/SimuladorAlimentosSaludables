@@ -46,15 +46,11 @@ li {
 }
 
 .imgSnack {
- /* width: 40px;
-  height: 40px;
-  margin-right: 10px; */
-  width: 100px;       /* tamaño más grande */
-  height: auto;       /* mantiene proporción original */
-  object-fit: contain; /* evita deformaciones */
-  margin-right: 12px;  /* espacio entre imagen y texto */
-  vertical-align: middle; /* alinea con el texto */
-
+  width: 100px;
+  height: auto;
+  object-fit: contain;
+  margin-right: 12px;
+  vertical-align: middle;
 }
 
 .barra {
@@ -87,36 +83,33 @@ footer {
   color: #777;
 }
 
-#snack {
-  font-size: 18px;   /* texto legible dentro del select */
-  padding: 8px;
-}
-
-#snack option {
-  font-size: 18px;   /* asegura que las opciones también se vean grandes */
-}
-
 @media (max-width: 600px) {
   label[for="snack"] {
-    font-size: 28px;   /* el título se ve grande */
-    display: block;    /* ocupa toda la línea */
+    font-size: 28px;
+    display: block;
     margin-bottom: 12px;
   }
 
   #snack {
-    font-size: 78px;   /* texto más cómodo */
+    font-size: 18px;
     padding: 10px;
-    width: 100%;       /* ocupa todo el ancho en móvil */
+    width: 100%;
     margin-bottom: 12px;
   }
 
   #btnAgregar {
-    font-size: 78px;   /* texto más cómodo */
+    font-size: 18px;
     padding: 10px 16px;
-    width: 100%;       /* botón ancho en móvil */
+    width: 100%;
   }
 
   .formSection {
     padding: 12px;
   }
 }
+
+.fill {
+  height: 100%;
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
+
