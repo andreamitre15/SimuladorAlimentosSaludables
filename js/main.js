@@ -26,9 +26,9 @@ function mostrarOpciones() {
 // Función auxiliar para elegir color según porcentaje
 function colorSegunValor(valor) {
   if (valor >= 70) return "green";       // ✅ verde
-  if (valor >= 50 && valor <= 69) return "yellow"; // ⚠️ amarillo
-  if (valor <= 49) return "red";         // ❌ rojo
-  return "yellow";                       // intermedio
+  if (valor >= 50 && valor <= 60) return "yellow"; // ⚠️ amarillo
+  if (valor <= 40) return "red";         // ❌ rojo
+  return "orange";                       // intermedio
 }
 
 // Actualizar barras y mostrar porcentaje afuera
@@ -110,4 +110,3 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
 
 // Inicializar
 cargarSnacks();
-
