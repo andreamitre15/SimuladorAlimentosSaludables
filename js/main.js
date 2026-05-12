@@ -23,6 +23,14 @@ function mostrarOpciones() {
   });
 }
 
+// Función auxiliar para elegir color según porcentaje
+function colorSegunValor(valor) {
+  if (valor >= 70) return "green";       // ✅ verde
+  if (valor >= 50 && valor <= 60) return "yellow"; // ⚠️ amarillo
+  if (valor <= 40) return "red";         // ❌ rojo
+  return "orange";                       // intermedio
+}
+
 // Actualizar barras y mostrar porcentaje afuera
 function actualizarBarras() {
   const barraEnergia = document.getElementById("barraEnergia");
@@ -30,12 +38,15 @@ function actualizarBarras() {
   const barraBienestar = document.getElementById("barraBienestar");
 
   barraEnergia.style.width = energia + "%";
+  barraEnergia.style.backgroundColor = colorSegunValor(energia);
   document.getElementById("valorEnergia").textContent = energia + "%";
 
   barraConcentracion.style.width = concentracion + "%";
+  barraConcentracion.style.backgroundColor = colorSegunValor(concentracion);
   document.getElementById("valorConcentracion").textContent = concentracion + "%";
 
   barraBienestar.style.width = bienestar + "%";
+  barraBienestar.style.backgroundColor = colorSegunValor(bienestar);
   document.getElementById("valorBienestar").textContent = bienestar + "%";
 }
 
@@ -55,46 +66,53 @@ document.getElementById("btnAgregar").addEventListener("click", () => {
     concentracion = Math.max(0, Math.min(100, concentracion));
     bienestar = Math.max(0, Math.min(100, bienestar));
 
-    // Mostrar snack en lista
+    // Mostrar snack en lista con botón eliminar
     const li = document.createElement("li");
     const img = document.createElement("img");
     img.src = elegido.imagen;
     img.className = "imgSnack";
     li.appendChild(img);
-    li.appendChild(document.createTextNode(elegido.nombre));
+    li.appendChild(document.createTextNode(elegido.nombre + " "));
+
+    const btnEliminar = document.createElement("button");
+    btnEliminar.textContent = "Eliminar";
+    btnEliminar.className = "eliminar"; // estilo rojo
+    btnEliminar.style.marginLeft = "10px";
+    btnEliminar.addEventListener("click", () => {
+      // Revertir valores al eliminar
+      energia -= elegido.energia;
+      concentracion -= elegido.concentracion;
+      bienestar -= elegido.bienestar;
+
+      energia = Math.max(0, Math.min(100, energia));
+      concentracion = Math.max(0, Math.min(100, concentracion));
+      bienestar = Math.max(0, Math.min(100, bienestar));
+
+      actualizarBarras();
+      li.remove();
+    });
+
+    li.appendChild(btnEliminar);
     document.getElementById("listaSnacks").appendChild(li);
 
     // Actualizar barras
     actualizarBarras();
 
+    // Mostrar mensaje de elección
+    const comentarios = document.getElementById("comentarios");
+    const pElegido = document.createElement("p");
+    pElegido.textContent = "Elegiste: " + elegido.nombre;
+    comentarios.appendChild(pElegido);
+
     // Mostrar recomendación si existe
-    if (elegido.recomendacion) {
-      const comentarios = document.getElementById("comentarios");
-      const p = document.createElement("p");
-      p.textContent = elegido.recomendacion;
-      comentarios.appendChild(p);
+    if (elegido.recomendacion && elegido.recomendacion.trim() !== "") {
+      const pRec = document.createElement("p");
+      pRec.textContent = elegido.recomendacion;
+      comentarios.appendChild(pRec);
     }
   }
 });
 
-function actualizarBarras() {
-  const barraEnergia = document.getElementById("barraEnergia");
-  const barraConcentracion = document.getElementById("barraConcentracion");
-  const barraBienestar = document.getElementById("barraBienestar");
-
-  barraEnergia.style.width = energia + "%";
-  barraEnergia.style.backgroundColor = "#ff9800"; // naranja
-  document.getElementById("valorEnergia").textContent = energia + "%";
-
-  barraConcentracion.style.width = concentracion + "%";
-  barraConcentracion.style.backgroundColor = "#2196f3"; // azul
-  document.getElementById("valorConcentracion").textContent = concentracion + "%";
-
-  barraBienestar.style.width = bienestar + "%";
-  barraBienestar.style.backgroundColor = "#4caf50"; // verde
-  document.getElementById("valorBienestar").textContent = bienestar + "%";
-}
-
-
 // Inicializar
 cargarSnacks();
+

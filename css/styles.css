@@ -82,31 +82,42 @@ footer {
   margin-top: 100px;
   color: #777;
 }
+button.eliminar {
+  background-color: #f44336; /* rojo */
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
 
+/* Versión teléfono: agrandar formulario y botón */
 @media (max-width: 600px) {
   label[for="snack"] {
-    font-size: 28px;
+    font-size: 22px;
     display: block;
     margin-bottom: 12px;
   }
 
   #snack {
-    font-size: 18px;
-    padding: 10px;
+    font-size: 20px;
+    padding: 12px;
     width: 100%;
     margin-bottom: 12px;
   }
 
   #btnAgregar {
-    font-size: 18px;
-    padding: 10px 16px;
+    font-size: 20px;
+    padding: 12px 18px;
     width: 100%;
   }
 
   .formSection {
-    padding: 12px;
+    padding: 16px;
   }
 }
+
 
 .fill {
   height: 100%;
