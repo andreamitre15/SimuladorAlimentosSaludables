@@ -91,6 +91,7 @@ button.eliminar {
   padding: 6px 12px;
   cursor: pointer;
 }
+
 /* Estilo para las recomendaciones */
 #comentarios p {
   background-color: #f0f9f0;   /* verde muy claro */
@@ -102,9 +103,14 @@ button.eliminar {
   line-height: 1.4;
   color: #2e7d32;              /* texto verde oscuro */
 }
+  .fill {
+  height: 100%;
+  transition: width 0.5s ease, background-color 0.5s ease;
+}
 
 
 /* Versión teléfono: agrandar formulario y botón */
+
 @media (max-width: 600px) {
   label[for="snack"] {
     font-size: 22px;
@@ -128,12 +134,9 @@ button.eliminar {
   .formSection {
     padding: 16px;
   }
-  
-  .fill {
-  height: 100%;
-  transition: width 0.5s ease, background-color 0.5s ease;
 }
-}
+
+
 
 
 
