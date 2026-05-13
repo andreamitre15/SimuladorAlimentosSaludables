@@ -6,5 +6,5 @@
   { "nombre": "Infusión sin azúcar", "imagen": "./img/agua.jfif", "energia": 5, "concentracion": 8, "bienestar": 6, "recomendacion": " Excelente para lograr estar hidratado, evita el azúcar y mejora la concentración." },
   { "nombre": "Hamburguesa", "imagen": "./img/hamburguesa.jfif", "energia": 15, "concentracion": -5, "bienestar": -8, "recomendacion": "Compensa con frutas en la merienda" },
   { "nombre": "Pizza", "imagen": "./img/pizza.jfif", "energia": 12, "concentracion": -4, "bienestar": -6, "recomendacion": "Agrega ensalada para equilibrar" },
-  { "nombre": "Gaseosa azucarada", "imagen": "./img/gaseosa.jfif", "energia": 8, "concentracion": -6, "bienestar": -10, "recomendacion": "Prefiere agua o infusiones sin azúcar" }
+  { "nombre": "Gaseosa azucarada", "imagen": "./img/refresco.jfif", "energia": 8, "concentracion": -6, "bienestar": -10, "recomendacion": "Prefiere agua o infusiones sin azúcar" }
 ]
